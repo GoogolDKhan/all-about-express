@@ -2,6 +2,10 @@ var express = require("express");
 var app = express();
 require("dotenv").config();
 
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 console.log("Hello World");
 
 app.use(function middleware(req, res, next) {
