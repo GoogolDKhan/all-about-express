@@ -4,6 +4,12 @@ require("dotenv").config();
 
 console.log("Hello World");
 
+app.use(function middleware(req, res, next) {
+  var string = req.method + " " + req.path + " - " + req.ip;
+  console.log(string);
+  next();
+});
+
 // app.get("/", (req, res) => {
 //     res.send("Hello Express");
 //   });
@@ -22,11 +28,11 @@ app.get("/", (req, res) => {
 // });
 
 app.get("/json", (req, res) => {
-    if(process.env.MESSAGE_STYLE==="uppercase") {
-      res.json({"message": "HELLO JSON"});
-    } else {
-      res.json({"message": "Hello json"});
-    }
-  });
+  if (process.env.MESSAGE_STYLE === "uppercase") {
+    res.json({ message: "HELLO JSON" });
+  } else {
+    res.json({ message: "Hello json" });
+  }
+});
 
 module.exports = app;
